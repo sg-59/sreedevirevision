@@ -1,20 +1,15 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-
+import React, { useContext } from 'react'
+import { UserContext } from './Statemanagement';
 
 const Sub = () => {
 
-    const getData=useSelector((state)=>state.userData.userInfo[0])
-    console.log("get data in useselector",getData);
-
+    const {state}=useContext(UserContext)
+    console.log("final value",state);
   return (
     <div>
-      {getData?.map((li)=>(
-        <>
-        <h3>{li.name}</h3>
-        <h5>{li.email}</h5>
-        </>
-      ))}
+   {state?.map((li)=>(
+    <h1>{li.name}</h1>
+   ))}
     </div>
   )
 }

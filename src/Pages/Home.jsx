@@ -1,40 +1,28 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import React, { useContext, useState } from 'react'
 import axios from 'axios'
-import { addtoData } from '../Redux/UserSlice'
-
+import { UserContext } from './Statemanagement'
+import { Link } from 'react-router-dom'
 const Home = () => {
 
-    const dispatch=useDispatch()
+    const {dispatch}=useContext(UserContext)
 
-    const[state,setState]=useState([])
+    const [state,setState]=useState([])
 
-useEffect(()=>{
-    axios.get('https://jsonplaceholder.typicode.com/users').then((data)=>{
-        console.log("values in api",data.data);
-       dispatch(addtoData(data.data))
-        setState(data.data)
-    })
-},[])
+    function display(){
+        axios.get('https://jsonplaceholder.typicode.com/users').then((data)=>{
+            console.log("api fetch values",data.data);
+            setState(data.data)
+            dispatch({message:"success",response:data.data})
+        })
+    }
 
   return (
     <div>
-      <h1>Home</h1>
-      <Link to={`/sub`}>Sub</Link>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <Link to={`/third`}>third</Link>
-      <br></br>
-      <br></br>
-      {state?.map((li)=>(
-        <>
-        <h3>{li.name}</h3>
-        <h5>{li.email}</h5>
-        </>
-      ))}
+  <button onClick={display}>Click me</button>
+{state?.map((li)=>(
+    <h1>{li.name}</h1>
+))}
+  <Link to={'/sub'}>Sub page</Link>
     </div>
   )
 }
