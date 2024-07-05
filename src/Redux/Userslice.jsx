@@ -1,24 +1,20 @@
 import {createSlice} from '@reduxjs/toolkit'
 
-const userData=createSlice({
-    name:"user",
+const user=createSlice({
+    name:"userData",
     initialState:{
-        userInfo:null,
-        productData:[]
+        userInfo:[]
     },
     reducers:{
-        addtoData:(state,action)=>{
-            console.log("action value......",action);
-state.userInfo=action.payload
-        },
-        removeData:(state,action)=>{
-state.userInfo=null
-        },
-        addtoProductData:(state,action)=>{
-            state.productData.push(action.payload)
-        }
+addtoData:(state,action)=>{
+    console.log("action values",action);
+    state.userInfo.push(action.payload)
+},
+deletetoData:(state,action)=>{
+    state.userInfo=[]
+}
     }
 })
 
-export const {addtoData,removeData,addtoProductData}=userData.actions
-export default userData.reducer
+export const {addtoData,deletetoData} =user.actions
+export default user.reducer

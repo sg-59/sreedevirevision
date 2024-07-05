@@ -1,19 +1,29 @@
-import React, { useState }  from 'react'
-import { useSelector } from 'react-redux'
-
-
+import React from 'react'
+import { useSelector,useDispatch } from 'react-redux';
+import { deletetoData } from '../Redux/UserSlice';
 
 const Third = () => {
-const title=useSelector((state)=>state.user.productData[0])
 
-console.log("title",title);
+    const dispatch=useDispatch()
+
+    const getDatainthirdpage=useSelector((state)=>state.userData.userInfo[0])
+    console.log("get data in useselector in third page",getDatainthirdpage);
+
+    function remove(){
+        dispatch(deletetoData())
+    }
+
   return (
     <div>
-{title && title.map((li)=>(
-  <h3>{li.title}</h3>
-))}
+      {getDatainthirdpage?.map((li)=>(
+        <>
+        <h3>{li.name}</h3>
+        <h5>{li.email}</h5>
+        </>
+      ))}
+      <button onClick={remove}>Remove</button>
     </div>
-  )
+  )       
 }
 
 export default Third

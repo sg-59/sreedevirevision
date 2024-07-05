@@ -1,12 +1,12 @@
 // import {configureStore} from '@reduxjs/toolkit'
-// import userslicepage from './Userslice'
+// import userslicePage from './UserSlice'
 // export default configureStore({
 //     reducer:{
-//         user:userslicepage
+// userData:userslicePage
 //     }
 // })
 
-import { configureStore,combineReducers } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 import {
   persistStore,
   persistReducer,
@@ -18,22 +18,21 @@ import {
   REGISTER,
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import userslicepage from './Userslice'
-import adminslicePage from './Adminslice'
+import userslicePage from './UserSlice'
 
 
 const persistConfig = {
-  key: 'ViginReact',
+  key: "revisionSreedevi",
   version: 1,
   storage,
 }
 
-const rootReducer=combineReducers({user:userslicepage,admin:adminslicePage})
-
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+const persistedReducer = persistReducer(persistConfig, userslicePage)
 
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer:{
+   userData :persistedReducer,
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
@@ -43,4 +42,5 @@ export const store = configureStore({
 })
 
 export let persistor = persistStore(store)
+
 

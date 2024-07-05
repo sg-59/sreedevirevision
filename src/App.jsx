@@ -1,26 +1,24 @@
-import { createBrowserRouter, RouterProvider, createRoutesFromElements, Route } from 'react-router-dom'
-
-import First from './Pages/First'
-import Seond from './Pages/Seond'
+import { createBrowserRouter, RouterProvider, createRoutesFromElements, Route} from 'react-router-dom'
+import Home from './Pages/Home'
+import Sub from './Pages/Sub'
 import Third from './Pages/Third'
-import Fourth from './Pages/Fourth'
-import Fifth from './Pages/Fifth'
+import Usememo1 from './Pages/Usememo1'
+import Reactmemo1 from './Pages/Reactmemo1'
+
+
 
 
 
 function App() {
 
-
-
-  const hello = createBrowserRouter(
+const hello = createBrowserRouter(
     createRoutesFromElements(
       <>
-        <Route path='/' element={<First />} />
-        <Route path='/second' element={<Seond />} />
-        <Route path='/third' element={<Third />} />
-        <Route path='/fourth' element={<Fourth />} />
-        <Route path='/fifth' element={<Fifth />} />
- 
+  <Route path='/' element={<Home/>} />
+  <Route path='/sub' element={<Sub/>} />
+  <Route path='/third' element={<Third/>} />
+  <Route path='/memo' element={<Usememo1/>} />
+  <Route path='/reactmemo' element={<Reactmemo1/>} />
       </>
     )
   )
